@@ -870,11 +870,19 @@ section,
 }
 
 .portfolio .portfolio-content img {
-  transition: transform 0.5s ease-in-out;
+  width: 100%;
+  height: 350px; /* Increased from 250px to 350px */
+  object-fit: cover;
+  aspect-ratio: 16/9;
+  display: block;
+  border-radius: 16px;         /* Rounded corners */
+  box-shadow: 0 4px 24px rgba(0,0,0,0.15); /* Soft shadow */
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.portfolio .portfolio-content:hover img {
-  transform: scale(1.2);
+.portfolio .portfolio-content img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.22);
 }
 
 .portfolio .portfolio-content .portfolio-info {
@@ -1331,5 +1339,20 @@ section,
     min-height: 20px;
     height: 1.5em;
   }
+}
+
+/* Fix for portfolio details page: allow scrolling if content is tall */
+body,
+html {
+  height: auto;
+  min-height: 100%;
+  overflow-y: auto;
+}
+
+.main,
+.portfolio-details.section,
+.portfolio-details .container {
+  height: auto;
+  overflow: visible;
 }
 
