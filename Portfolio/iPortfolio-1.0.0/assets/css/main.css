@@ -1356,3 +1356,9 @@ html {
   overflow: visible;
 }
 
+.code-topic-description {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 1.2em;
+}
+
