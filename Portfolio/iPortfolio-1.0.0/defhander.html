@@ -124,6 +124,8 @@
       </div>
     </section><!-- /Portfolio Details Section -->
 
+<!-- Only show content of game and no code SO GET CONTENT-->
+
     <!-- Code Explanation Section -->
     <section class="code-section section">
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -159,6 +161,123 @@
                 This is the main code for the hand collision ability. Here i get all the child objects from the hands and i change the layer to default so they collide with the other objects.
               </p>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Code Explanation Section -->
+    <section class="code-section section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <!-- YouTube Video Embed -->
+        <div class="row justify-content-center mb-4">
+          <div class="col-lg-10 text-center">
+            <!-- Replace the src URL with your YouTube video link -->
+            <div class="ratio ratio-16x9">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/tXiT1AMC5kE?si=IQmP31Nk-qjh87Yt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+        <!-- End YouTube Video Embed -->
+
+        <!-- Topic Title -->
+        <div class="row mb-3">
+          <div class="col-12 text-center">
+            <h1 class="code-topic-title">Flying Enemies</h1>
+          </div>
+        </div>
+        <div>
+          <p class="code-topic-description text-center">
+            I'm most proud of the flying enemies. I use a steering behavior to navigate them around the map without any Unity Nav-Mesh. They will try to avoid each other and obstacles, while also trying to get to the player. This makes them very dynamic and unpredictable. They also have movement prediction and a dash when they get close to the player. I made 3 different variants: fast/weak, normal, and slow/tank.
+          </p>
+        </div>
+        <div class="row gy-4 align-items-center">
+          <div class="col-lg-6">
+            <img src="assets/vids/PlayerDetection.gif" alt="Player Detection" class="img-fluid rounded shadow">
+          </div>
+          <div class="col-lg-6">
+            <div class="code-description">
+              <h3>Player Detection</h3>
+              <p>
+                <!-- Write your explanation here -->
+                For the player detection I use the OverlapSphere function to see if the player is in range. If so I send a raycast to the player's position to see if its in line of sight.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+        <!-- Code Explanation Section -->
+    <section class="code-section section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4 align-items-center">
+          <img src="assets/img/Code/pursue.png" alt="Hand Collision Code" class="img-fluid rounded shadow mb-3">
+          <div class="code-description">
+            <h3>Movement Prediction</h3>
+            <p>
+              <!-- Write your explanation here -->
+              Here I calculate the future position of the player based on their current velocity. This makes them more challenging to deal with.
+            </p>
+          </div>
+          <div class="col-lg-6">
+          </div>
+        </div>
+      </div>
+    </section>
+
+        <!-- Code Explanation Section -->
+    <section class="code-section section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4 align-items-center">
+          <div class="col-lg-6">
+            <img src="assets/img/Code/seek.png" alt="Hand Collision Code" class="img-fluid rounded shadow">
+          </div>
+          <div class="col-lg-6">
+            <div class="code-description">
+              <h3>Enemy steering</h3>
+              <p>
+                <!-- Write your explanation here -->
+                This is the main code for the steering behavior. It calculates the desired velocity based on the player's position and the enemy's current position. This makes it move towards the player.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+            <!-- Code Explanation Section -->
+    <section class="code-section section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4 align-items-center">
+          <img src="assets/img/Code/get_avoidance.png" alt="Hand Collision Code" class="img-fluid rounded shadow mb-3">
+          <div class="code-description">
+            <h3>Obstacle Avoidance</h3>
+            <p>
+              <!-- Write your explanation here -->
+              This function will calculate the 'best' avoidance direction. It uses the RaysOnPlane function to calculate this for each of the planes (XZ, YZ, XY).
+            </p>
+          </div>
+          <div class="col-lg-6">
+          </div>
+        </div>
+      </div>
+    </section>
+
+            <!-- Code Explanation Section -->
+    <section class="code-section section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4 align-items-center">
+          <img src="assets/img/Code/raysonplane.png" alt="Hand Collision Code" class="img-fluid rounded shadow">
+          <div class="code-description">
+            <h3>Obstacle Detection</h3>
+            <p>
+              <!-- Write your explanation here -->
+               In this function I sent out rays around the enemy on a given plane. If it detects an obstacle it will calculate how much it weights based on the distance to the obstacle. If not it adds the direction of the ray times its weight to the total.
+            </p>
+          </div>
+          <div class="col-lg-6">
           </div>
         </div>
       </div>
