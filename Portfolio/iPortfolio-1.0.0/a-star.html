@@ -110,8 +110,7 @@
             <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
               <h2>Pathfinding!</h2>
               <p>
-                This project implements the A* pathfinding algorithm in Python. It allows for efficient pathfinding on a grid-based map, making it suitable for games and robotics.<br><br>
-                I found this a really cool and fun project. I also learned a lot about pathfinding and I will use this in future projects. 
+                In this project I made an A-Star pathfinding algorithm in Python. I made this because I wanted to learn more about pathfinding and I chose the A-star algorithm because it is one of the most optimized pathfinding algorithms.
               </p>
             </div>
           </div>
@@ -119,9 +118,81 @@
       </div>
     </section><!-- /Portfolio Details Section -->
 
-    <!-- now listen here u little shit edit the trippy vid without the trip and put it as trailer. 
-     Then go over the code in section below. With different versions. -->
+         <!-- Code Explanation Section -->
+    <section class="code-section section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4 justify-content-center">
+          <div class="col-12 text-center">
+            <h1>Week 1-2</h1>
+          </div>
+          <div class="col-lg-10">
+              <p>
+                In the first week I made the a grid with a 2D array. Then I made a breadth first algorithm to find the shortest path from a start point to the end point. First I displayed the path found with directions in the console, and at the end of the week I made the grid visual in the console with the path found.
+              </p>
+          </div>
+          <div class="col-12 text-center">
+            <img src="assets/img/A-star/a-star_directions.png" style="width: 100%; max-width: 1000px; height: auto;">
+          </div>
+          <div class="col-12 text-center">
+            <img src="assets/img/A-star/a-star_console_path.png" style="width: 100%; max-width: 225px; height: auto;">
+            <img src="assets/img/A-star/a-star_node_class.png" style="width: 100%; max-width: 525px; height: auto;">
+            <div class="col-lg-10 mx-auto text-center" style=" margin-top: 20px;">
+              <p>
+                Here you can see how the main logic works. I check around the current node for any walkable nodes, and put them in a 'to-do' list. I made a node class for ever location on the grid so I can easily get information about the node like if its already walked or if its walkable.
+              </p>
+            </div>
+          </div>
+      </div>
+    </section>
 
+
+<!-- Code Explanation Section -->
+<section class="code-section section">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row gy-4 justify-content-center">
+      <div class="col-12 text-center">
+        <h1>Week 3</h1>
+      </div>
+
+      <!-- Text and image side by side -->
+      <div class="col-lg-10">
+        <div class="row align-items-center">
+          <!-- Text -->
+          <div class="col-md-7">
+            <p>
+              In the third week I used Pygame to visualize the grid better. This was quite a challenge since I never worked with Pygame before. But eventually I got it working. Also I added color to the start and end.
+            </p>
+          </div>
+          <!-- Image -->
+          <div class="col-md-5 text-center">
+            <img src="assets/img/A-star/a-star_pygame.png" 
+                 style="width: 100%; max-width: 200px; height: auto;">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+         <!-- Code Explanation Section -->
+    <section class="code-section section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4 justify-content-center">
+          <div class="col-12 text-center">
+            <h1>Week 4</h1>
+          </div>
+          <div class="col-lg-10">
+              <p>
+                In the fourth week I evolved the breadth first algorithm to the A-star algorithm. This was easier than expected since I already had a good base with the breadth first algorithm. The only thing I had to do was add a heuristic to the algorithm to make it A-star.<br>
+                I also made maps for the algorithm to run on. So you can see how it performs on different maps.
+              </p>
+          </div>
+          <div class="col-12 text-center">
+            <img src="assets/img/A-star/a-star_calculate_cost.png" style="width: 100%; max-width: 1000px; height: auto;">
+          </div>
+      </div>
+    </section>  
   </main>
 
 
