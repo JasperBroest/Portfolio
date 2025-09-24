@@ -1366,3 +1366,7 @@ html {
   margin-top: 3rem;
 }
 
+.code-block {
+  max-height: 200px;
+}
+

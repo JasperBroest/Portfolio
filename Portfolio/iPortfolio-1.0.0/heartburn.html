@@ -26,7 +26,13 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
 
+  <!-- and it's easy to individually load additional languages -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/go.min.js"></script>
+
+  <script>hljs.highlightAll();</script>
   <!-- =======================================================
   * Template Name: iPortfolio
   * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
@@ -190,6 +196,24 @@
           <div class="code-description">
             <h3>Movement Prediction</h3>
             <p>
+              <pre class="code-block"><code class="language-csharp">
+using Unity.Cinemachine;
+using UnityEngine;
+
+public class CameraSystem : MonoBehaviour
+{
+    CinemachineCamera[] cameras;
+    void Start()
+    {
+        cameras =  GetComponentsInChildren<CinemachineCamera>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}</code></pre>
               <!-- Write your explanation here -->
               Here I calculate the future position of the player based on their current velocity. This makes them more challenging to deal with.
             </p>
