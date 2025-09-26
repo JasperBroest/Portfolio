@@ -129,27 +129,82 @@
          <!-- Code Explanation Section -->
     <section class="code-section section">
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row gy-4 justify-content-center">
-          <div class="col-12 text-center">
-            <h1>Week 1-2</h1>
-          </div>
-          <div class="col-lg-10">
+        <div class="container ">
+          <div class="row gy-4 justify-content-center">
+            <div class="col-12 text-center">
+              <h1>Week 1-2</h1>
+            </div>
+            <div class="col-lg-10">
               <p>
                 In the first week I made the a grid with a 2D array. Then I made a breadth first algorithm to find the shortest path from a start point to the end point. First I displayed the path found with directions in the console, and at the end of the week I made the grid visual in the console with the path found.
               </p>
+            </div>
+            <div class="col-12 " style="padding-bottom: 20px;">
+              <img src="assets/img/A-star/a-star_directions.png" style="width: 100%; max-width: 1000px; height: auto;">
+            </div>
+
+            <div class="row align-items-start">
+              <div class="col-3" style="background-color: rgb(255, 255, 255);text-align: left;padding-left: 30px;">
+                <img src="assets/img/A-star/a-star_console_path.png" style="width: 100%; max-width: 225px; height: auto;">
+              </div>
+              <div class="col-9">
+                <pre class="code-block"><code class="language-python">
+# Make a node class for each position in the grid
+class node():
+  def __init__(self, x, y, parent=None, action=None):
+    self.parent = parent
+    self.action = action
+    self.x = x
+    self.y = y
+    self.visited = False
+
+  def __eq__(self, other):
+  return self.x == other.x and self.y == other.y
+                </code></pre>
+              </div>
+            </div>
           </div>
-          <div class="col-12 text-center">
-            <img src="assets/img/A-star/a-star_directions.png" style="width: 100%; max-width: 1000px; height: auto;">
-          </div>
-          <div class="col-12 text-center">
-            <img src="assets/img/A-star/a-star_console_path.png" style="width: 100%; max-width: 225px; height: auto;">
-            <img src="assets/img/A-star/a-star_node_class.png" style="width: 100%; max-width: 525px; height: auto;">
+            
             <div class="col-lg-10 mx-auto text-center" style=" margin-top: 20px;">
               <p>
                 Here you can see how the main logic works. I check around the current node for any walkable nodes, and put them in a 'to-do' list. I made a node class for ever location on the grid so I can easily get information about the node like if its already walked or if its walkable.
               </p>
-              <img src="assets/img/A-star/breadth-first_logic.png" style="width: 100%; max-width: 800px; height: auto;">
             </div>
+            <div>
+              <pre class="code-block"><code class="language-python">
+while len(to_do) > 0:
+  current = to_do.pop(0)
+  if current.x == goal_node.x and current.y == goal_node.y:
+      to_do.clear()
+      #print("found shortest path")
+      path = []
+      while current.parent is not None:
+          # print(current.action)
+          path.append(current)
+          current = current.parent
+      # print(path[::-1])
+      return path[::-1]
+  # Add down
+  if current.y + 1 < max_length and grid[current.y + 1][current.x] == 0 and current not in done:
+      to_do.append(node(current.x, current.y + 1, parent=current, action="down"))
+
+  # Add right
+  if current.x + 1 < max_width and grid[current.y][current.x + 1] == 0 and current not in done:
+      to_do.append(node(current.x + 1, current.y, parent=current, action="right"))
+      
+
+  # Add left
+  if current.x - 1 >= 0 and grid[current.y][current.x - 1] == 0 and current not in done:
+      to_do.append(node(current.x - 1, current.y, parent=current, action="left"))
+  
+  # Add up
+  if current.y - 1 >= 0 and grid[current.y - 1][current.x] == 0 and current not in done:
+      to_do.append(node(current.x, current.y - 1, parent=current, action="up"))
+  
+  done.append(current)
+  current.visited = True
+              </code></pre>
+              </div>
           </div>
       </div>
     </section>
@@ -169,7 +224,7 @@
           <!-- Text -->
           <div class="col-md-7">
             <p>
-              In the third week I used Pygame to visualize the grid better. This was quite a challenge since I never worked with Pygame before. But eventually I got it working. Also I added color to the start and end.
+              In the third week I used Pygame to visualize the grid better. This was quite a challenge since I never worked with Pygame before. But eventually I got it working. Also I added color to the start and end. This is how it looked in the end.
             </p>
           </div>
           <!-- Image -->
@@ -197,11 +252,363 @@
                 I also made maps for the algorithm to run on. So you can see how it performs on different maps.
               </p>
           </div>
-          <div class="col-12 text-center">
-            <img src="assets/img/A-star/a-star_calculate_cost.png" style="width: 100%; max-width: 1000px; height: auto;">
-          </div>
+          <pre class="code-block"><code class="language-python">
+def calcute_cost(self, goal_node):
+# If has parent then g is parent's g + 1, else g is 0
+self.g = self.parent.g + 1 if self.parent else 0
+# Calculates the distance between the current node and the goal node
+# self.h = abs(goal_node.x - self.x) + abs(goal_node.y - self.y)
+self.h = ((goal_node.x - self.x) ** 2 + (goal_node.y - self.y) ** 2) ** 0.5
+self.f = self.g + self.h
+          </code></pre>
       </div>
     </section>  
+
+
+     <!-- Code Explanation Section -->
+    <section class="code-section section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4 justify-content-center">
+          <div class="col-12 text-center">
+            <h1>Full script:</h1>
+          </div>
+
+              <pre class="code-block"><code class="language-python">
+import os
+import time
+import pygame
+
+# Make a node class for each position in the grid
+class node():
+    def __init__(self, x, y, parent=None, action=None):
+        self.parent = parent
+        self.action = action
+        self.x = x
+        self.y = y
+        self.visited = False
+        self.g = 0
+        self.h = 0
+        self.f = 0
+
+    def calcute_cost(self, goal_node):
+        # If has parent then g is parent's g + 1, else g is 0
+        self.g = self.parent.g + 1 if self.parent else 0
+        # Calculates the distance between the current node and the goal node
+        # self.h = abs(goal_node.x - self.x) + abs(goal_node.y - self.y)
+        self.h = ((goal_node.x - self.x) ** 2 + (goal_node.y - self.y) ** 2) ** 0.5
+        self.f = self.g + self.h
+        
+
+    def __eq__(self, other):
+        return self.x == other.x and self.y == other.y
+
+
+#region maps
+# --- MAP 1: Original ---
+grid1 = [
+    [0,1,0,1,0,0,1,0,1,0,1,0],
+    [0,1,0,1,0,1,1,0,1,0,1,0],
+    [0,0,0,0,0,1,0,0,0,0,1,0],
+    [1,1,1,1,0,1,0,1,1,0,1,0],
+    [0,1,0,0,0,1,0,0,1,0,0,0],
+    [0,1,1,1,0,1,1,0,1,1,1,0],
+    [0,0,0,1,0,0,0,0,0,0,0,0],
+    [1,1,0,1,1,1,1,1,1,1,1,0],
+    [0,0,0,0,0,0,0,0,1,0,0,0],
+    [0,1,1,1,1,1,1,0,0,0,1,0]
+]
+visual_grid1 = [
+    [0,'∎',0,'∎',0,0,'∎',0,'∎',0,'∎',0],
+    [0,'∎',0,'∎',0,'∎','∎',0,'∎',0,'∎',0],
+    [0,0,0,0,0,'∎',0,0,0,0,'∎',0],
+    ['∎','∎','∎','∎',0,'∎',0,'∎','∎',0,'∎',0],
+    [0,'∎',0,0,0,'∎',0,0,'∎',0,0,0],
+    [0,'∎','∎','∎',0,'∎','∎',0,'∎','∎','∎',0],
+    [0,0,0,'∎',0,0,0,0,0,0,0,0],
+    ['∎','∎',0,'∎','∎','∎','∎','∎','∎','∎','∎',0],
+    [0,0,0,0,0,0,0,0,'∎',0,0,0],
+    [0,'∎','∎','∎','∎','∎','∎',0,0,0,'∎',0]
+]
+
+# --- MAP 2: Open field with a wall ---
+grid2 = [
+    [0,0,0,0,0,0],
+    [0,0,0,0,0,0],
+    [0,0,0,0,1,0],
+    [1,1,1,1,1,0],
+    [0,0,0,0,0,0]
+]
+visual_grid2 = [
+    [0,0,0,0,0,0],
+    [0,0,0,0,0,0],
+    [0,0,0,0,'∎',0],
+    ['∎','∎','∎','∎','∎',0],
+    [0,0,0,0,0,0]
+]
+
+# --- MAP 3: Maze-like ---
+grid3 = [
+    [0,1,0,0,0,0,0,0,0,0],
+    [0,1,0,0,0,0,0,1,0,1],
+    [0,0,0,1,0,0,0,1,0,1],
+    [1,1,1,1,1,1,1,1,0,0],
+    [0,0,0,0,0,0,0,0,0,0]
+]
+visual_grid3 = [
+    [0,'∎',0,0,0,0,0,0,0,0],
+    [0,'∎',0,0,0,0,0,'∎',0,'∎'],
+    [0,0,0,'∎',0,0,0,'∎',0,'∎'],
+    ['∎','∎','∎','∎','∎','∎','∎','∎',0,0],
+    [0,0,0,0,0,0,0,0,0,0]
+]
+
+# --- MAP 4: Large open with scattered walls ---
+grid4 = [
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0],
+    [0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0],
+    [0,1,0,1,1,1,1,1,1,1,1,1,1,0,1,0],
+    [0,1,0,0,0,0,0,0,0,0,0,0,1,0,1,0],
+    [0,1,1,1,1,1,1,1,1,1,1,0,1,0,1,0],
+    [0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0],
+    [1,1,1,1,1,1,1,1,1,0,1,0,1,1,1,0],
+    [0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0],
+    [0,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+]
+visual_grid4 = [
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    ['∎','∎','∎','∎',0,'∎','∎','∎','∎','∎','∎','∎','∎','∎','∎',0],
+    [0,0,0,'∎',0,0,0,0,0,0,0,0,0,0,'∎',0],
+    [0,'∎',0,'∎','∎','∎','∎','∎','∎','∎','∎','∎','∎',0,'∎',0],
+    [0,'∎',0,0,0,0,0,0,0,0,0,0,'∎',0,'∎',0],
+    [0,'∎','∎','∎','∎','∎','∎','∎','∎','∎','∎',0,'∎',0,'∎',0],
+    [0,0,0,0,0,0,0,0,0,0,'∎',0,'∎',0,0,0],
+    ['∎','∎','∎','∎','∎','∎','∎','∎','∎',0,'∎',0,'∎','∎','∎',0],
+    [0,0,0,0,0,0,0,0,'∎',0,0,0,0,0,0,0],
+    [0,'∎','∎','∎','∎','∎','∎',0,'∎','∎','∎','∎','∎','∎','∎',0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+]
+
+# --- MAP 5: Large maze ---
+grid5 = [
+    [0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0],
+    [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1],
+    [0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1],
+    [1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+]
+visual_grid5 = [
+    [0,'∎',0,0,0,'∎',0,0,0,'∎',0,0,0,'∎',0,0,0,'∎',0,0],
+    [0,'∎',0,'∎',0,'∎',0,'∎',0,'∎',0,'∎',0,'∎',0,'∎',0,'∎',0,'∎'],
+    [0,0,0,'∎',0,0,0,'∎',0,0,0,'∎',0,0,0,'∎',0,0,0,'∎'],
+    ['∎','∎',0,'∎','∎','∎',0,'∎','∎','∎',0,'∎','∎','∎',0,'∎','∎','∎',0,'∎'],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,'∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎',0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+]
+
+# --- MAP 6: Large spiral ---
+grid6 = [
+    [0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1],
+    [1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1],
+    [1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1],
+    [1,0,1,0,1,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1],
+    [1,0,1,0,1,0,0,0,0,0,0,0,0,1,0,1,0,1,0,1],
+    [1,0,1,0,1,0,1,1,1,1,1,1,0,1,0,1,0,1,0,1],
+    [1,0,1,0,1,0,1,0,0,0,0,1,0,1,0,1,0,1,0,1],
+    [1,0,1,0,1,0,1,0,1,1,0,1,0,1,0,1,0,1,0,1],
+    [1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,1],
+    [1,0,1,0,1,0,1,0,1,0,1,1,0,1,0,1,0,1,0,1],
+    [1,0,1,0,1,0,1,0,1,0,0,0,0,1,0,1,0,1,0,1],
+    [1,0,1,0,1,0,1,0,1,1,1,1,1,1,0,1,0,1,0,1],
+    [1,0,1,0,1,0,1,0,0,0,0,0,0,0,0,1,0,1,0,1],
+    [1,0,1,0,1,0,1,0,1,1,1,1,1,1,1,1,0,1,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1],
+    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+]
+visual_grid6 = [
+    [0,'∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎'],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,'∎'],
+    ['∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎',0,'∎'],
+    ['∎',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,'∎',0,'∎'],
+    ['∎',0,'∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎',0,'∎',0,'∎'],
+    ['∎',0,'∎',0,0,0,0,0,0,0,0,0,0,0,0,'∎',0,'∎',0,'∎'],
+    ['∎',0,'∎',0,'∎','∎','∎','∎','∎','∎','∎','∎','∎','∎',0,'∎',0,'∎',0,'∎'],
+    ['∎',0,'∎',0,'∎',0,0,0,0,0,0,0,0,'∎',0,'∎',0,'∎',0,'∎'],
+    ['∎',0,'∎',0,'∎',0,'∎','∎','∎','∎','∎','∎',0,'∎',0,'∎',0,'∎',0,'∎'],
+    ['∎',0,'∎',0,'∎',0,'∎',0,0,0,0,'∎',0,'∎',0,'∎',0,'∎',0,'∎'],
+    ['∎',0,'∎',0,'∎',0,'∎',0,'∎','∎',0,'∎',0,'∎',0,'∎',0,'∎',0,'∎'],
+    ['∎',0,'∎',0,'∎',0,'∎',0,'∎',0,0,'∎',0,'∎',0,'∎',0,'∎',0,'∎'],
+    ['∎',0,'∎',0,'∎',0,'∎',0,'∎',0,'∎','∎',0,'∎',0,'∎',0,'∎',0,'∎'],
+    ['∎',0,'∎',0,'∎',0,'∎',0,'∎',0,0,0,0,'∎',0,'∎',0,'∎',0,'∎'],
+    ['∎',0,'∎',0,'∎',0,'∎',0,'∎','∎','∎','∎','∎','∎',0,'∎',0,'∎',0,'∎'],
+    ['∎',0,'∎',0,'∎',0,'∎',0,0,0,0,0,0,0,0,'∎',0,'∎',0,'∎'],
+    ['∎',0,'∎',0,'∎',0,'∎','∎','∎','∎','∎','∎','∎','∎','∎','∎',0,'∎',0,'∎'],
+    ['∎',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,'∎',0,'∎'],
+    ['∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎','∎',0,'∎'],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+]
+
+# --- MAP 7: Open with a horizontal wall and a gap (12x16) ---
+grid7 = [
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+]
+visual_grid7 = [
+    [0]*16,
+    [0]*16,
+    [0]*16,
+    [0]*16,
+    [0]*16,
+    ['∎','∎','∎','∎','∎','∎','∎','∎',0,'∎','∎','∎','∎','∎','∎','∎'],
+    [0]*16,
+    [0]*16,
+    [0]*16,
+    [0]*16,
+    [0]*16,
+    [0]*16
+]
+
+# region A*
+
+#g = 0  Cost from start to current node
+#h = 0  How far away cost from goal
+#f = 0  Total cost (g + h)
+
+def draw_text(text, font, color, x, y):
+    img = font.render(text, True, color)
+    screen.blit(img, (x, y))
+
+def reset_visual_grid(visual_grid, original_visual_grid):
+    for y in range(len(visual_grid)):
+        for x in range(len(visual_grid[0])):
+            visual_grid[y][x] = original_visual_grid[y][x]
+
+def display_grid(start_x, start_y, goal_x, goal_y, grid, visual_grid):
+    x, y = 10, 0
+    screen.fill((255, 255, 255))  # Clear the screen
+    for item_index, item in enumerate(visual_grid):
+        for col_index, col in enumerate(item):
+            if item_index == start_y and col_index == start_x:
+                draw_text(f"{visual_grid[start_y][start_x]}", text_font, (0, 255, 0), x, y)
+            elif item_index == goal_y and col_index == goal_x:
+                draw_text(f"{visual_grid[goal_y][goal_x]}", text_font, (255, 0, 0), x, y)
+            elif col == '×':
+                draw_text(f"{col}", text_font, (0, 0, 255), x, y)
+            elif col == '✓':
+                draw_text(f"{col}", text_font, (0, 200, 0), x, y)
+            elif col == '■':
+                draw_text(f"{col}", text_font, (200, 0, 200), x, y)
+            elif col == '∎':
+                draw_text(f"{col}", text_font, (100, 100, 100), x, y)
+            else:
+                draw_text(f"{col}", text_font, (0, 0, 0), x, y)
+            x += 20
+        x = 10
+        y += 30
+    pygame.display.flip()
+
+def find_path(start_x, start_y, goal_x, goal_y, grid, visual_grid, visualize=True):
+    start_node = node(start_x, start_y)
+    goal_node = node(goal_x, goal_y)
+    to_do = [start_node]
+    done = []
+    max_width = len(grid[0])
+    max_length = len(grid)
+    while len(to_do) > 0:
+        current = to_do[0]
+        for item in to_do:
+            item.calcute_cost(goal_node)
+            if item.f < current.f:
+                current = item
+            elif item.f == current.f and item.h < current.h:
+                current = item
+        to_do.remove(current)
+        if current.x == goal_node.x and current.y == goal_node.y:
+            to_do.clear()
+            path = []
+            while current.parent is not None:
+                path.append(current)
+                current = current.parent
+            return path[::-1]
+        # Add neighbors
+        for dx, dy, action in [(0,1,"down"), (1,0,"right"), (-1,0,"left"), (0,-1,"up")]:
+            nx, ny = current.x + dx, current.y + dy
+            if 0 <= nx < max_width and 0 <= ny < max_length and grid[ny][nx] == 0:
+                neighbor = node(nx, ny, parent=current, action=action)
+                if neighbor not in done and neighbor not in to_do:
+                    to_do.append(neighbor)
+        done.append(current)
+        current.visited = True
+        if visual_grid[current.y][current.x] not in ('✓', '■'):
+            visual_grid[current.y][current.x] = '×'
+        if visualize:
+            display_grid(start_x, start_y, goal_x, goal_y, grid, visual_grid)
+            pygame.time.delay(100)
+    return []
+
+# List of all maps and their visual grids, start and goal positions
+maps = [
+    (grid1, visual_grid1, [row[:] for row in visual_grid1], 0, 0, 0, len(grid1)-1),
+    (grid2, visual_grid2, [row[:] for row in visual_grid2], 0, 0, 0, len(grid2)-1),
+    (grid3, visual_grid3, [row[:] for row in visual_grid3], 0, 0, 0, len(grid3)-1),
+    (grid4, visual_grid4, [row[:] for row in visual_grid4], 0, 0, 0, len(grid4)-1),
+    (grid5, visual_grid5, [row[:] for row in visual_grid5], 0, 0, 0, len(grid5)-1),
+    (grid6, visual_grid6, [row[:] for row in visual_grid6], 0, 0, 0, len(grid6)-1),
+    (grid7, visual_grid7, [row[:] for row in visual_grid7], 0, 0, 0, len(grid7)-1),
+]
+
+#region Pygame
+pygame.init()
+screen = pygame.display.set_mode((1024, 768))
+text_font = pygame.font.SysFont("Arial", 30)
+running = True
+
+map_index = 0
+
+while running and map_index < len(maps):
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    grid, visual_grid, original_visual_grid, start_x, start_y, goal_x, goal_y = maps[map_index]
+    reset_visual_grid(visual_grid, original_visual_grid)
+    display_grid(start_x, start_y, goal_x, goal_y, grid, visual_grid)
+    pygame.time.delay(500)
+
+    # Find path and visualize search
+    path = find_path(start_x, start_y, goal_x, goal_y, grid, visual_grid, visualize=True)
+    # Animate the path with checkmarks
+    for item in path:
+        visual_grid[item.y][item.x] = '✓'
+        display_grid(start_x, start_y, goal_x, goal_y, grid, visual_grid)
+        pygame.time.delay(80)
+    pygame.time.delay(800)
+    map_index += 1
+
+pygame.quit()
+#end region pygame
+              </code></pre>
+          </div>
+      </div>
+    </section>
   </main>
 
 

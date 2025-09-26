@@ -1367,6 +1367,15 @@ html {
 }
 
 .code-block {
-  max-height: 600px;
+  max-height: 500px;
+}
+
+.about-me-text {
+  font-size: large;
+}
+
+.blueprint {
+  width: 100%;
+  height: 500px;
 }
 
