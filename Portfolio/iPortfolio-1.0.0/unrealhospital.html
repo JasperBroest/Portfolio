@@ -34,7 +34,7 @@
     <i class="header-toggle d-xl-none bi bi-list"></i>
 
     <div class="profile-img">
-      <img src="a2Wssets/img/CRINGE.jpg" alt="" class="img-fluid rounded-circle">
+      <img src="assets/img/CRINGE.jpg" alt="" class="img-fluid rounded-circle">
     </div>
 
     <a href="index.html" class="logo d-flex align-items-center justify-content-center">
@@ -44,7 +44,7 @@
     </a>
 
     <div class="social-links text-center">
-      <a href="#" class="google-plus"><i class="bi bi-envelope"></i></a>
+      <a href="index.html#contact" class="google-plus"><i class="bi bi-envelope"></i></a>
       <a href="https://www.linkedin.com/in/jasper-broest-939097313/" class="linkedin" target="_blank"><i class="bi bi-linkedin"></i></a>
     </div>
 
@@ -166,19 +166,66 @@
       </div>
     </section>
 
-        <!-- Code Explanation Section -->
+               <!-- Code Explanation Section -->
     <section class="code-section section">
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-4 align-items-center">
           <div class="code-description text-center">
-            <h1>My work</h1>
+            <h1>Teleport system</h1>
+            <p style="font-size: x-large;">
+              <!-- Write your explanation here -->
+              You can teleport to rooms by clicking the doors
+            </p>
           </div>
-
+          <div class="col-lg-12 text-center">
+            <img src="assets/vids/Teleport.gif">
+          </div>
+          <p>
+            <br>
+            <br>
+            <br>
+          </p>
+          <div class="col-lg-12 text-center">
+            <p style="font-size: x-large;">
+              First I check if the right trigger is pressed 70% or more
+            </p>
+          </div>
+          <iframe class="blueprint" src="https://blueprintue.com/render/pu-1fz3w/" scrolling="no" allowfullscreen></iframe> 
+          <div>
+            <p>
+              <br>
+              <br>
+              <br>
+            </p>
+            <div class="col-lg-12 text-center">
+              <p style="font-size: x-large;">
+                Then I sent a linetrace from the controller forward and when it hits something that has the interface DoorInterAction it calls the "OpenDoor" function
+              </p>
+              <p>
+                (I check with an interface because I found it fast and it looked easy, but I know its not optimal)
+              </p>
+              <iframe class="blueprint" src="https://blueprintue.com/render/hls1g9rh/" scrolling="no" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div>
+            <p>
+              <br>
+              <br>
+              <br>
+            </p>
+            <div class="col-lg-12 text-center">
+              <p style="font-size: x-large;">
+                Lastly I fade the screen to black and teleport the player to the room he needs to be in
+              </p>
+              <iframe class="blueprint" src="https://blueprintue.com/render/vhwfx7bq/" scrolling="no" allowfullscreen></iframe>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-            <!-- Code Explanation Section -->
+
+                   <!-- Code Explanation Section -->
     <section class="code-section section">
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-4 align-items-center">
@@ -189,9 +236,111 @@
               I made the sytem for the timers above the doors. At the beginning only one timer is active. Overtime more timers start and their durations decrease.
             </p>
           </div>
-          <div class="col-lg-12">
-            <iframe class="blueprint" src="https://blueprintue.com/render/pt0-gc9q/" scrolling="no" allowfullscreen></iframe>
+          <div class="col-lg-12 text-center">
+            <img src="assets/vids/TimerDemo.gif">
           </div>
+          <p>
+            <br>
+            <br>
+            <br>
+          </p>
+          <div class="col-lg-12 text-center">
+            <p style="font-size: x-large;">
+              When the game starts it started 1 timer quickly, then it starts the looping system
+            </p>
+          </div>
+          <iframe class="blueprint" src="https://blueprintue.com/render/hfyua68i/" scrolling="no" allowfullscreen></iframe>
+          <div>
+            <p>
+              <br>
+              <br>
+              <br>
+            </p>
+            <div class="col-lg-12 text-center">
+              <p style="font-size: x-large;">
+                This is the main blueprint that manages what timers and when they start
+              </p>
+              <iframe class="blueprint" src="https://blueprintue.com/render/8pfviddc/" scrolling="no" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div>
+            <p>
+              <br>
+              <br>
+              <br>
+            </p>
+            <div class="col-lg-12 text-center">
+              <p style="font-size: x-large;">
+                First it checks if a new timer can be started
+              </p>
+              <iframe class="blueprint" src="https://blueprintue.com/render/ax79pbr-/" scrolling="no" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div>
+            <p>
+              <br>
+              <br>
+              <br>
+            </p>
+            <div class="col-lg-12 text-center">
+              <p style="font-size: x-large;">
+                When that returns true it starts searching in a map of doors for one that is not active yet
+              </p>
+              <p>
+                (This blueprint breaks when I show it here)
+              </p>
+              <iframe class="blueprint" src="https://blueprintue.com/render/g-mhegy4/" scrolling="no" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div>
+            <p>
+              <br>
+              <br>
+              <br>
+            </p>
+            <div class="col-lg-12 text-center">
+              <p style="font-size: x-large;">
+                It checks this by looking at the struct every door has and see if the starttime is less than 0, because the default value is -1
+              </p>
+              <iframe class="blueprint" src="https://blueprintue.com/render/hblf2ijk/" scrolling="no" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div>
+            <p>
+              <br>
+              <br>
+              <br>
+            </p>
+            <div class="col-lg-12 text-center">
+              <p style="font-size: x-large;">
+                When it found a door then it sets the duration and starttime for the struct of the door
+              </p>
+              <iframe class="blueprint" src="https://blueprintue.com/render/pbyokrsy/" scrolling="no" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="col-lg-12 text-center">
+            <p style="font-size: x-large;">
+              <br>
+              <br>
+              <br>
+              Then it starts the timer and then repeats...
+            </p>
+          </div>
+          <div>
+            <p>
+              <br>
+              <br>
+              <br>
+            </p>
+            <div class="col-lg-12 text-center">
+              <p style="font-size: x-large;">
+                And this is how I update the timer for the countdown
+              </p>
+              <iframe class="blueprint" src="https://blueprintue.com/render/-5_mczhi/" scrolling="no" allowfullscreen></iframe>
+            </div>
+          </div>
+
+
         </div>
       </div>
     </section>
@@ -204,14 +353,40 @@
             <h1>Applying band-aid</h1>
             <p style="font-size: x-large;">
               <!-- Write your explanation here -->
-              Here I 
+              I check if the patient collides with the band-aid by using a tag
             </p>
           </div>
-          <div class="col-lg-12">
-            <iframe class="blueprint" src="https://blueprintue.com/render/t03co3go/" scrolling="no" allowfullscreen></iframe>
-          </div>
+          <iframe class="blueprint" src="https://blueprintue.com/render/8u5uli-4/" scrolling="no" allowfullscreen></iframe>
         </div>
       </div>
+        <div>
+            <p>
+              <br>
+              <br>
+              <br>
+            </p>
+            <div class="col-lg-12 text-center">
+              <p style="font-size: x-large;">
+                The "applying" is done by setting the visibility of the band-aid and the blood. I also turn on a green light and play a sound to let the player know they fixed the patient
+              </p>
+              <iframe class="blueprint" src="https://blueprintue.com/render/8-wi1en0/" scrolling="no" allowfullscreen></iframe>
+            </div>
+          </div>
+
+          <div>
+            <p>
+              <br>
+              <br>
+              <br>
+            </p>
+            <div class="col-lg-12 text-center">
+              <p style="font-size: x-large;">
+                At the end I reset the timer of the door that connects to the room you are in
+              </p>
+              <iframe class="blueprint" src="https://blueprintue.com/render/pt0-gc9q/" scrolling="no" allowfullscreen></iframe>
+            </div>
+          </div>
+
     </section>    
 
   </main>
